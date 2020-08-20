@@ -1,32 +1,37 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+	<div id="app">
+		<router-view></router-view>
+	</div>
 </template>
 
+<script>
+export default {}
+</script>
+
 <style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+// 字体图标
+@import url('http://at.alicdn.com/t/font_1426139_h6vn3jbl5q.css');
+.iconweixin {
+	font-size: 20/360 * 100vw;
+	color: #0f0;
+}
+// 清除默认样式
+* {
+	margin: 0;
+	padding: 0;
 }
 
-#nav {
-  padding: 30px;
+a {
+	color: inherit;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+a:hover {
+	text-decoration: none;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+ul,
+li,
+ol {
+	list-style: none;
 }
 </style>
