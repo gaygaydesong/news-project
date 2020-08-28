@@ -11,10 +11,7 @@ export default {}
 <style lang="less">
 // 字体图标
 @import url('http://at.alicdn.com/t/font_1426139_h6vn3jbl5q.css');
-.iconweixin {
-	font-size: 20/360 * 100vw;
-	color: #0f0;
-}
+
 // 清除默认样式
 * {
 	margin: 0;

@@ -36,7 +36,6 @@ export default {
 		this.$axios({
 			url: '/category'
 		}).then(res => {
-			console.log(res)
 			// 数据获取完毕, 放到 data 中进行渲染
 			this.cateList = res.data.data.map(category => {
 				return {
@@ -49,7 +48,6 @@ export default {
 				}
 			})
 			this.loadPost()
-			console.log(this.cateList)
 		})
 	},
 	methods: {
@@ -63,7 +61,7 @@ export default {
 				}
 			}).then(res => {
 				// 数据获取完毕, 放到 data 中进行渲染
-				console.log(res.data)
+
 				// this.cateList[this.activeCateIndex].list = res.data.data
 				this.cateList[this.activeCateIndex].list = [...this.cateList[this.activeCateIndex].list, ...res.data.data]
 

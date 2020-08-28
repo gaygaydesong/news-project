@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div @click="$router.push('/postdetail?id=' + postData.id)">
 		<!-- 图片的长度在1-2之间显示一张图 -->
 		<div class="one" v-if="postData.type == 1 && postData.cover.length >= 1 && postData.cover.length < 3">
 			<div class="left">
