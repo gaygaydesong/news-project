@@ -13,8 +13,20 @@ Vue.use(Vant)
 Vue.use(Dialog)
 
 router.beforeEach((to, from, next) => {
-	if (to.path == '/personal') {
-		// 如果是个人中心，判断token是否存在
+	// if (to.path == '/personal') {
+	// 	// 如果是个人中心，判断token是否存在
+	// 	if (localStorage.getItem('token')) {
+	// 		// 有token才放行
+	// 		next()
+	// 	} else {
+	// 		// 如果没有token，则返回登录页面
+	// 		router.push('/login')
+	// 	}
+	// }
+	// // 在判断个人中心页面的时候，其他的页面也需要放行，所以在if外用next()
+	// next()
+	// 在路由给需要验证的页面添加meta属性，判断请求头中meta的needAuth是否为true  然后再判断是否带token
+	if (to.meta.needAuth) {
 		if (localStorage.getItem('token')) {
 			// 有token才放行
 			next()
@@ -23,7 +35,6 @@ router.beforeEach((to, from, next) => {
 			router.push('/login')
 		}
 	}
-	// 在判断个人中心页面的时候，其他的页面也需要放行，所以在if外用next()
 	next()
 })
 
@@ -50,17 +61,23 @@ axios.interceptors.response.use(res => {
 	}
 	return res
 })
+
 // 响应拦截器
-axios.interceptors.response.use(
-	res => {
-		// 拦截的处理
-		return res
+axios.interceptors.request.use(
+	config => {
+		// 在发送请求之前做些什么，例如加入token
+		// 添加token的条件，必须有token再加上没有Authorization
+		if (localStorage.getItem('token') && !config.headers.Authorization) {
+			config.headers.Authorization = 'Bearer ' + localStorage.getItem('token')
+		}
+		return config
 	},
 	err => {
 		// 对相应错误的处理
-		return err
+		return Promise.reject(err)
 	}
 )
+
 // 将 axios 挂载到 vue原型中
 Vue.prototype.$axios = axios
 

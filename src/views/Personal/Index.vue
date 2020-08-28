@@ -2,7 +2,7 @@
 	<div>
 		<!-- 这里是个人中心上半部分 -->
 		<div class="profile">
-			<img v-if="userInfo.head_img" :src="'http://127.0.0.1:3000' + userInfo.head_img" alt="" class="avatar" />
+			<img v-if="userInfo.head_img" :src="$axios.defaults.baseURL + userInfo.head_img" alt="" class="avatar" />
 			<img v-else src="../../assets/touxiang.png" alt="" class="avatar" />
 			<div class="info">
 				<div class="name">
@@ -20,10 +20,10 @@
 			<span class="iconfont iconjiantou1"></span>
 		</div>
 		<!-- 这里是封装条形组件部分 -->
-		<PersonalBar leftText="我的关注" rightText="关注的用户" />
+		<PersonalBar leftText="我的关注" rightText="关注的用户" @handleClick="$router.push('/follows')" />
 		<PersonalBar leftText="我的跟帖" rightText="跟帖/回复" />
-		<PersonalBar leftText="我的收藏" rightText="文章/视频" />
-		<PersonalBar leftText="设置" />
+		<PersonalBar leftText="我的收藏" rightText="文章/视频" @handleClick="$router.push('/star')" />
+		<PersonalBar leftText="设置" @handleClick="$router.push('/edit')" />
 		<AuthBtn btnText="退出登录" @handleClick="logL" />
 	</div>
 </template>
@@ -44,7 +44,7 @@ export default {
 	},
 	created() {
 		this.$axios({
-			url: 'http://127.0.0.1:3000/user/' + localStorage.getItem('userId'),
+			url: '/user/' + localStorage.getItem('userId'),
 			headers: {
 				// Authorization: localStorage.getItem('token')
 				// 标准写法 在 token 前加一个 'Bearer ' 标识

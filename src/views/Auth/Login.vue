@@ -35,7 +35,6 @@ export default {
 			password: ''
 		}
 	},
-
 	components: {
 		AuthInput,
 		AuthBtn
