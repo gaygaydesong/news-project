@@ -39,7 +39,11 @@ router.beforeEach((to, from, next) => {
 })
 
 // 给引入的 axios 设置默认的基准路径
-axios.defaults.baseURL = 'http://127.0.0.1:3000'
+if (process.env.NODE_ENV == 'development') {
+	axios.defaults.baseURL = 'http://127.0.0.1:3000'
+} else {
+	axios.defaults.baseURL = 'http://157.122.54.189:9083'
+}
 
 // 由于在组件外弹窗单独引入弹窗组件
 import { Toast } from 'vant'
