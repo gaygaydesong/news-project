@@ -1,6 +1,6 @@
 <template>
 	<div class="edit_set">
-		<HeaderNav title="编辑资料" />
+		<HeaderNav title="编辑资料" @goClick="$router.push('/personal')" />
 		<div class="imgs">
 			<!-- 自定义上传样式 -->
 			<van-uploader :after-read="afterRead">
